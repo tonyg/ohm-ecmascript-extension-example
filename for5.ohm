@@ -8,7 +8,9 @@ For5 <: ES5 {
   // We reuse the "for", "identifier", and "Statement" definitions from the ES5 grammar,
   // checking also for the literal input strings "five" and "as".
   //
-  IterationStatement += for "five" "as" identifier Statement      -- for5_named
-                      | for "five" Statement                      -- for5_nameless
+  IterationStatement += for five as identifier Statement  -- for5_named
+                      | for five Statement                -- for5_nameless
 
+  five = "five" ~identifierPart
+  as = "as" ~identifierPart
 }

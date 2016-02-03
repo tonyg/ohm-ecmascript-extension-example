@@ -13,4 +13,9 @@ For5 <: ES5 {
 
   five = "five" ~identifierPart
   as = "as" ~identifierPart
+
+  keyword
+   += five
+    | as
+  
 }

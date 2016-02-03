@@ -1,0 +1,14 @@
+For5 <: ES5 {
+
+  // Extends ("+=") the IterationStatement nonterminal from the ES5 grammar with new
+  // productions named "for5_nameless" and "for5_named". In semantic actions associated with
+  // this grammar, expect to define functions called "IterationStatement_for5_nameless" and
+  // "IterationStatement_for5_named" for these rules.
+  //
+  // We reuse the "for", "identifier", and "Statement" definitions from the ES5 grammar,
+  // checking also for the literal input strings "five" and "as".
+  //
+  IterationStatement += for "five" "as" identifier Statement      -- for5_named
+                      | for "five" Statement                      -- for5_nameless
+
+}

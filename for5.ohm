@@ -5,17 +5,16 @@ For5 <: ES5 {
   // this grammar, expect to define functions called "IterationStatement_for5_nameless" and
   // "IterationStatement_for5_named" for these rules.
   //
-  // We reuse the "for", "identifier", and "Statement" definitions from the ES5 grammar,
-  // checking also for the literal input strings "five" and "as".
-  //
+  // We reuse the "for", "identifier", and "Statement" definitions from the ES5 grammar, and
+  // add new rules for the literal input strings "five" and "as", making sure to extend the ES5
+  // "keyword" nonterminal to include them.
+
   IterationStatement += for five as identifier Statement  -- for5_named
                       | for five Statement                -- for5_nameless
 
   five = "five" ~identifierPart
   as = "as" ~identifierPart
 
-  keyword
-   += five
-    | as
-  
+  keyword += five
+           | as
 }

@@ -6,13 +6,14 @@ To install prerequisites,
 
 Then, to run the example,
 
-    node for5.js
+    node for5.js for5-example.js
 
-This will print a javascript program to standard output.
+This will translate `for5-example.js`, printing a javascript program
+to standard output.
 
 Running the printed program,
 
-    node for5.js | node
+    node for5.js for5-example.js | node
 
 produces the output
 

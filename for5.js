@@ -63,14 +63,39 @@ var modifiedSourceActions = {
 //
 semantics.extendAttribute('modifiedSource', modifiedSourceActions);
 
-// Finally, we read in an example program, parse it, and check the
-// results. If there was a parse error, we print the error message;
-// otherwise, we ask for the expanded source code and print it out.
+// The function compileExtendedSource takes source code in our
+// with-for-five variant on ES5, and translates it to plain ES5. If
+// there was a parse error, we print the error message and return
+// null; otherwise, we ask for the expanded source code and return it.
 //
-var inputSource = fs.readFileSync(path.join(__dirname, 'for5-example.js')).toString();
-var parseResult = grammar.match(inputSource);
-if (parseResult.succeeded()) {
-  console.log(semantics(parseResult).asES5);
+function compileExtendedSource(inputSource) {
+  var parseResult = grammar.match(inputSource);
+  if (parseResult.succeeded()) {
+    return semantics(parseResult).asES5;
+  } else {
+    console.error(parseResult.message);
+    return null;
+  }
+}
+
+// Finally, we read in an example program, translate it, and check the
+// results. If the translation succeeded, we print the new source
+// code.
+//
+// We accept an optional file name on the command line; if it is
+// missing or "-", we use standard input instead.
+//
+if (process.argv.length < 3 || process.argv[2] === '-') {
+  var inputSource = '';
+  process.stdin.resume();
+  process.stdin.setEncoding('utf8');
+  process.stdin.on('data', function (buf) { inputSource += buf; });
+  process.stdin.on('end', function() {
+    var translatedSource = compileExtendedSource(inputSource);
+    if (translatedSource) { console.log(translatedSource); }
+});
 } else {
-  console.log(parseResult.message);
+  var inputSource = fs.readFileSync(path.join(__dirname, process.argv[2])).toString();
+  var translatedSource = compileExtendedSource(inputSource);
+  if (translatedSource) { console.log(translatedSource); }
 }

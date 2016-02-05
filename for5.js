@@ -70,12 +70,8 @@ semantics.extendAttribute('modifiedSource', modifiedSourceActions);
 //
 function compileExtendedSource(inputSource) {
   var parseResult = grammar.match(inputSource);
-  if (parseResult.succeeded()) {
-    return semantics(parseResult).asES5;
-  } else {
-    console.error(parseResult.message);
-    return null;
-  }
+  if (parseResult.failed()) console.error(parseResult.message);
+  return parseResult.succeeded() && semantics(parseResult).asES5;
 }
 
 // Finally, we read in an example program, translate it, and check the

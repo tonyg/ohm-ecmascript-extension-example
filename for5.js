@@ -91,7 +91,7 @@ if (process.argv.length < 3 || process.argv[2] === '-') {
     if (translatedSource) { console.log(translatedSource); }
 });
 } else {
-  var inputSource = fs.readFileSync(path.join(__dirname, process.argv[2])).toString();
+  var inputSource = fs.readFileSync(process.argv[2]).toString();
   var translatedSource = compileExtendedSource(inputSource);
   if (translatedSource) { console.log(translatedSource); }
 }

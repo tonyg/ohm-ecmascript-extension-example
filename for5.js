@@ -1,13 +1,14 @@
 'use strict';
 
-// We use the fs and path modules to read files from the current directory, namely:
+// We use the fs and path modules to read files, namely:
 //  -- for5.ohm, the grammar extension to ES5
-//  -- for5-example.js, an example program that uses our grammar extension
+//  -- the (optional) filename supplied on the command line, to
+//     contain an example program that uses our grammar extension
 //
 var fs = require('fs');
 var path = require('path');
 
-// The module './es5.js' contains the extensible ES5 grammar we will be using.
+// The module 'es5.js' contains the extensible ES5 grammar we will be using.
 // The 'ohm' package is the heart of the extensible parsing system.
 //
 var ohm = require('ohm-js');

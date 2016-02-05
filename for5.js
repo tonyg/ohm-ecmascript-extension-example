@@ -19,8 +19,8 @@ var ES5 = require('ohm-js/examples/ecmascript/es5.js');
 // grammar. We will add our syntax transformation code to the new
 // extension object.
 //
-var grammar = ohm.grammar(fs.readFileSync(path.join(__dirname, 'for5.ohm')).toString(),
-			  { ES5: ES5.grammar });
+var grammarSource = fs.readFileSync(path.join(__dirname, 'for5.ohm')).toString();
+var grammar = ohm.grammar(grammarSource, { ES5: ES5.grammar });
 var semantics = grammar.extendSemantics(ES5.semantics);
 
 // This simple utility generates "probably unique" symbols, for use in
